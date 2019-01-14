@@ -28,9 +28,9 @@ function ready(){
 }
 
 function start() {
-    document.onfullscreenchange = function() {
-      screen.orientation.lock('natural').then(ready());
-    }
     document.documentElement.requestFullscreen();
+    document.onfullscreenchange = async () => {
+        await screen.orientation.lock('natural');
+        ready();
   }
-
+}
