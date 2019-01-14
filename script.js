@@ -1,7 +1,16 @@
 function unlock() {
     document.documentElement.requestFullscreen();
     screen.orientation.unlock();
-    console.log("Screen unlocked to" + screen.orientation.type);
+}
+
+function lockPortrait(){
+    document.documentElement.requestFullscreen();
+    screen.orientation.lock('portrait');
+}
+
+function lockLandscape(){
+    document.documentElement.requestFullscreen();
+    screen.orientation.lock('landscape');
 }
 
 const { type, angle } = screen.orientation
