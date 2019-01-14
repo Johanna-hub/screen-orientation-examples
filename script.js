@@ -23,9 +23,13 @@ function show(event) {
 screen.orientation.addEventListener("change", show);
 window.onload = show;
 
-  var start = function() {
+function ready(){
+    console.log("Now full screen and ready to start, locked to " + screen.orientation.type);
+}
+
+function start() {
     document.onfullscreenchange = function() {
-      screen.orientation.lock('natural').then(startInternal);
+      screen.orientation.lock('natural').then(ready());
     }
     document.documentElement.requestFullscreen();
   }
