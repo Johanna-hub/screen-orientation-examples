@@ -31,10 +31,12 @@ function ready(){
     console.log("Now full screen and ready to start, locked to " + screen.orientation.type);
 }
 
-function start() {
-    document.onfullscreenchange = async () => {
-        await screen.orientation.lock('landscape');
-        ready();
+async function start() {
+    const promiseToFullScreen = new Promise(resolve =>
+      document.addEventListener("fullscreenchange", resolve)
+    );
+    await document.documentElement.requestFullscreen();
+    await promiseToFullScreen;
+    await screen.orientation.lock('landscape');
+    ready();
   }
-    document.documentElement.requestFullscreen();
-}
