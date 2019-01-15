@@ -1,16 +1,20 @@
-function unlock() {
-    document.documentElement.requestFullscreen();
-    screen.orientation.unlock();
+async function goFullScreen() {
+    await document.documentElement.requestFullscreen();
 }
 
-function lockPortrait(){
-    document.documentElement.requestFullscreen();
-    screen.orientation.lock('portrait');
+async function unlock() {
+    await goFullScreen();
+    await screen.orientation.unlock();
 }
 
-function lockLandscape(){
-    document.documentElement.requestFullscreen();
-    screen.orientation.lock('landscape');
+async function lockPortrait(){
+    await goFullScreen();
+    await screen.orientation.lock('portrait');
+}
+
+async function lockLandscape(){
+    await goFullScreen();
+    await screen.orientation.lock('landscape');
 }
 
 const { type, angle } = screen.orientation
