@@ -1,5 +1,7 @@
 async function goFullScreen() {
-    await document.documentElement.requestFullscreen();
+    if(document.fullscreenElement === null) {
+        await document.documentElement.requestFullscreen();
+    } 
 }
 
 async function unlock() {
