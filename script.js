@@ -5,12 +5,12 @@ async function goFullScreen() {
 }
 
 async function unlock() {
-    // await goFullScreen();
+    await goFullScreen();
     await screen.orientation.unlock();
 }
 
 async function lockPortrait(){
-    // await goFullScreen();
+    await goFullScreen();
     await screen.orientation.lock('portrait');
 }
 
