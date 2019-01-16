@@ -49,8 +49,7 @@ function manualRotation() {
   
   function orientationChangeHandler() {
     if (window.matchMedia("(orientation: portrait)").matches) {
-        console.log(screen.orientation.type, "so type");
-        console.log(window.matchMedia)
+        console.log(window.matchMedia("(orientation: portrait)"))
       return;
     }
     window.removeEventListener("orientationchange", orientationChangeHandler);
