@@ -37,7 +37,10 @@ rotateButton.textContent = `Rotate to ${newOrientation}`;
 async function rotate() {
   await goFullScreen();
   await screen.orientation.lock(newOrientation);
-  rotateButton.textContent = `Rotate to ${newOrientation}`;
+  const nextOrientation = screen.orientation.type.startsWith("landscape")
+    ? "portrait"
+    : "landscape";
+  rotateButton.textContent = `Rotate to ${nextOrientation}`;
 }
 
 function ready() {
