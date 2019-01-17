@@ -29,13 +29,14 @@ screen.orientation.addEventListener("change", show);
 window.onload = show;
 
 async function rotate() {
+  const rotate = document.getElementById("rotate");
   await goFullScreen();
   const newOrientation = screen.orientation.type.startsWith("portrait")
     ? "landscape"
     : "portrait";
   console.log(`New Orientation is ${newOrientation}`);
   await screen.orientation.lock(newOrientation);
-  orientation.textContent = `Rotate to ${newOrientation}`;
+  rotate.textContent = `Rotate to ${newOrientation}`;
 }
 
 function ready() {
