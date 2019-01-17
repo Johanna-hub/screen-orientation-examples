@@ -28,15 +28,16 @@ function show(event) {
 screen.orientation.addEventListener("change", show);
 window.onload = show;
 
-async function rotate() {
-  const rotate = document.getElementById("rotate");
-  await goFullScreen();
-  const newOrientation = screen.orientation.type.startsWith("portrait")
+const rotateButton = document.getElementById("rotateButton");
+const newOrientation = screen.orientation.type.startsWith("portrait")
     ? "landscape"
     : "portrait";
-  console.log(`New Orientation is ${newOrientation}`);
+rotateButton.textContent = `Rotate to ${newOrientation}`;
+
+async function rotate() {
+  await goFullScreen();
   await screen.orientation.lock(newOrientation);
-  rotate.textContent = `Rotate to ${newOrientation}`;
+  rotateButton.textContent = `Rotate to ${newOrientation}`;
 }
 
 function ready() {
