@@ -19,15 +19,24 @@ async function lockLandscape() {
   await screen.orientation.lock("landscape");
 }
 
-const { type, angle } = screen.orientation;
 function show(event) {
-  console.log("Orientation type is " + screen.orientation.type);
-  console.log("Orientation angle is " + screen.orientation.angle);
+  const { type, angle } = screen.orientation;
+  console.log(`Orientation type is ${type} + angle is ${angle}`);
   console.log("Event Type is " + event.type);
 }
 
 screen.orientation.addEventListener("change", show);
 window.onload = show;
+
+async function rotate() {
+  await goFullScreen();
+  const newOrientation = screen.orientation.type.startsWith("portrait")
+    ? "landscape"
+    : "portrait";
+  console.log(`New Orientation is ${newOrientation}`);
+  await screen.orientation.lock(newOrientation);
+  orientation.textContent = `Rotate to ${newOrientation}`;
+}
 
 function ready() {
   console.log(
