@@ -3,10 +3,10 @@ function goFullScreen() {
   return document.documentElement.requestFullscreen();
 }
 
-// async function unlock() {
-//   await goFullScreen();
-//   await screen.orientation.unlock();
-// }
+async function unlock() {
+  await screen.orientation.unlock();
+  btnOrientation();
+}
 
 // async function lockPortrait() {
 //   await goFullScreen();
@@ -32,21 +32,21 @@ function oppOrientation() {
   return "portrait";
 }
 
-let btnOrientation = oppOrientation();
-rotateButton.textContent = `Rotate to ${btnOrientation}`
+function btnOrientation() {
+  const rotateButton = document.getElementById("rotateButton");
+  const btnOrientation = oppOrientation();
+  rotateButton.textContent = `Rotate to ${btnOrientation}`;
+}
 
 async function rotate() {
-  const rotateButton = document.getElementById("rotateButton");
   try {
     await goFullScreen();
   } catch (err) {
     console.error(err);
   }
   const newOrientation = oppOrientation();
-  console.log(`New Orientation is ${newOrientation}`);
   await screen.orientation.lock(newOrientation);
-  btnOrientation = oppOrientation();
-  rotateButton.textContent = `Rotate to ${btnOrientation}`;
+  btnOrientation();
 }
 
 screen.orientation.addEventListener("change", show);
