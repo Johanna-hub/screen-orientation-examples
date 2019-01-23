@@ -1,6 +1,6 @@
 function goFullScreen() {
   if (document.fullscreenElement) return;
-  return document.body.requestFullscreen();
+  return document.documentElement.requestFullscreen();
 }
 
 // async function unlock() {
