@@ -3,12 +3,6 @@ function goFullScreen() {
   return document.documentElement.requestFullscreen();
 }
 
-async function unlock() {
-  await screen.orientation.unlock();
-  screen.orientation.addEventListener("change", btnOrientation)
-
-}
-
 // async function lockPortrait() {
 //   await goFullScreen();
 //   await screen.orientation.lock("portrait");
@@ -51,14 +45,17 @@ async function rotate() {
 }
 
 btnOrientation();
-screen.orientation.addEventListener("change", show);
+screen.orientation.addEventListener('change', () => {    
+  btnOrientation();
+  show();    
+})
 window.addEventListener("load", show);
 
-function ready() {
-  console.log(
-    "Now full screen and ready to start, locked to " + screen.orientation.type
-  );
-}
+// function ready() {
+//   console.log(
+//     "Now full screen and ready to start, locked to " + screen.orientation.type
+//   );
+// }
 
 // async function start() {
 //   const promiseToFullScreen = new Promise(resolve =>
