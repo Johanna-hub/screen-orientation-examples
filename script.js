@@ -49,6 +49,7 @@ async function rotate() {
   btnOrientation();
 }
 
+btnOrientation();
 screen.orientation.addEventListener("change", show);
 window.addEventListener("load", show);
 
