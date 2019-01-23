@@ -5,7 +5,8 @@ function goFullScreen() {
 
 async function unlock() {
   await screen.orientation.unlock();
-  btnOrientation();
+  screen.orientation.addEventListener("change", btnOrientation)
+
 }
 
 // async function lockPortrait() {
@@ -31,9 +32,9 @@ function oppOrientation() {
   }
   return "portrait";
 }
+const rotateButton = document.getElementById("rotateButton");
 
 function btnOrientation() {
-  const rotateButton = document.getElementById("rotateButton");
   const btnOrientation = oppOrientation();
   rotateButton.textContent = `Rotate to ${btnOrientation}`;
 }
