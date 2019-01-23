@@ -47,7 +47,7 @@ async function rotate() {
 btnOrientation();
 screen.orientation.addEventListener('change', () => {    
   btnOrientation();
-  show();    
+  show(event);    
 })
 window.addEventListener("load", show);
 
