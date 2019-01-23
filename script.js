@@ -31,8 +31,8 @@ async function rotate() {
   } catch (err) {
     console.error(err);
   }
-  const { type } = screen.orientation;
   function oppOrientation() {
+    const { type } = screen.orientation;
     if (type.startsWith("portrait")) {
       return "landscape";
     }
