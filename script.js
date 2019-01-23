@@ -24,6 +24,17 @@ function show(event) {
   console.log("Event Type is " + event.type);
 }
 
+function oppOrientation() {
+  const { type } = screen.orientation;
+  if (type.startsWith("portrait")) {
+    return "landscape";
+  }
+  return "portrait";
+}
+
+let btnOrientation = oppOrientation();
+rotateButton.textContent = `Rotate to ${btnOrientation}`
+
 async function rotate() {
   const rotateButton = document.getElementById("rotateButton");
   try {
@@ -31,18 +42,10 @@ async function rotate() {
   } catch (err) {
     console.error(err);
   }
-  function oppOrientation() {
-    const { type } = screen.orientation;
-    if (type.startsWith("portrait")) {
-      return "landscape";
-    }
-    return "portrait";
-  }
   const newOrientation = oppOrientation();
   console.log(`New Orientation is ${newOrientation}`);
   await screen.orientation.lock(newOrientation);
-  const btnOrientation = oppOrientation();
-  console.log(btnOrientation, "button");
+  btnOrientation = oppOrientation();
   rotateButton.textContent = `Rotate to ${btnOrientation}`;
 }
 
