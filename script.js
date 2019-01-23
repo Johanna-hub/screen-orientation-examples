@@ -1,8 +1,7 @@
 function goFullScreen() {
   if (document.fullscreenElement) return;
   return document.body.requestFullscreen();
-  }
-
+}
 
 // async function unlock() {
 //   await goFullScreen();
@@ -25,9 +24,6 @@ function show(event) {
   console.log("Event Type is " + event.type);
 }
 
-screen.orientation.addEventListener("change", show);
-window.addEventListener("load", show);
-
 async function rotate() {
   const rotate = document.getElementById("rotate");
   try {
@@ -36,13 +32,14 @@ async function rotate() {
     console.error(err);
   }
   const { type } = screen.orientation;
-  const newOrientation = type.startsWith("portrait")
-    ? "landscape"
-    : "portrait";
+  const newOrientation = type.startsWith("portrait") ? "landscape" : "portrait";
   console.log(`New Orientation is ${newOrientation}`);
   await screen.orientation.lock(newOrientation);
   rotate.textContent = `Rotate to ${newOrientation}`;
 }
+
+screen.orientation.addEventListener("change", show);
+window.addEventListener("load", show);
 
 // function ready() {
 //   console.log(
@@ -86,4 +83,3 @@ async function rotate() {
 //   });
 //   alert("To start, please rotate your screen to landscape.");
 // }
-
