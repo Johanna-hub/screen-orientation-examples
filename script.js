@@ -1,7 +1,7 @@
 function goFullScreen() {
   if (document.fullscreenElement) return;
   return document.body.requestFullscreen();
-  }
+}
 
 // async function unlock() {
 //   await goFullScreen();
@@ -32,8 +32,11 @@ async function rotate() {
     console.error(err);
   }
   const { type } = screen.orientation;
-  function oppOrientation(){
-    type.startsWith("portrait") ? "landscape" : "portrait";
+  function oppOrientation() {
+    if (type.startsWith("portrait")) {
+      return "landscape";
+    }
+    return "portrait";
   }
   const newOrientation = oppOrientation();
   console.log(`New Orientation is ${newOrientation}`);
