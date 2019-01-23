@@ -35,7 +35,7 @@ async function rotate() {
   function oppOrientation(){
     type.startsWith("portrait") ? "landscape" : "portrait";
   }
-  const newOrientation = oppOrientation;
+  const newOrientation = oppOrientation();
   console.log(`New Orientation is ${newOrientation}`);
   await screen.orientation.lock(newOrientation);
   const btnOrientation = oppOrientation();
