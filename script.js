@@ -1,6 +1,7 @@
-function goFullScreen() {
-  if (document.fullscreenElement) return;
-  return document.body.requestFullscreen();
+async function goFullScreen() {
+  if (document.fullscreenElement === null) {
+    await document.body.requestFullscreen();
+  }
 }
 
 // async function unlock() {
@@ -18,11 +19,11 @@ function goFullScreen() {
 //   await screen.orientation.lock("landscape");
 // }
 
-// function show(event) {
-//   const { type, angle } = screen.orientation;
-//   console.log(`Orientation type is ${type} + angle is ${angle}.`);
-//   console.log("Event Type is " + event.type);
-// }
+function show(event) {
+  const { type, angle } = screen.orientation;
+  console.log(`Orientation type is ${type} + angle is ${angle}.`);
+  console.log("Event Type is " + event.type);
+}
 
 async function rotate() {
   const rotateButton = document.getElementById("rotateButton");
