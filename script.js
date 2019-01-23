@@ -45,17 +45,15 @@ async function rotate() {
 }
 
 btnOrientation();
-screen.orientation.addEventListener('change', () => {    
-  btnOrientation();
-  show(event);    
-})
+screen.orientation.addEventListener("change", btnOrientation);
+screen.orientation.addEventListener("change", show);
 window.addEventListener("load", show);
 
-// function ready() {
-//   console.log(
-//     "Now full screen and ready to start, locked to " + screen.orientation.type
-//   );
-// }
+function ready() {
+  console.log(
+    "Now full screen and ready to start, locked to " + screen.orientation.type
+  );
+}
 
 // async function start() {
 //   const promiseToFullScreen = new Promise(resolve =>
