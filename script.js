@@ -97,31 +97,25 @@ function fullScreenCheck() {
   return document.documentElement.requestFullscreen();
 }
 
-const lockButton = document.getElementById("lockBtn");
-
-function btnOrientation() {
-  const btnOrientation = oppOrientation();
-  lockButton.textContent = `Lock to ${btnOrientation}`;
+function updateDetails(lockButton) {
+  const buttonOrientation = getOppositeOrientation();
+  lockButton.textContent = `Lock to ${buttonOrientation}`;
 }
 
-function oppOrientation() {
+function getOppositeOrientation() {
   const { type } = screen.orientation;
-  if (type.startsWith("portrait")) {
-    return "landscape";
-  }
-  return "portrait";
+  return type.startsWith("portrait") ? "landscape" : "portrait";
 }
 
-async function rotate() {
-  const rotateBtn = document.getElementById("rotateBtn");
+async function rotate(lockButton) {
   try {
     await fullScreenCheck();
   } catch (err) {
     console.error(err);
   }
-  const newOrientation = oppOrientation();
+  const newOrientation = getOppositeOrientation();
   await screen.orientation.lock(newOrientation);
-  btnOrientation();
+  updateDetails(lockButton);
 }
 
 function show() {
@@ -129,6 +123,12 @@ function show() {
   console.log(`Orientation type is ${type} & angle is ${angle}.`);
 }
 
-screen.orientation.addEventListener("change", show);
-screen.orientation.addEventListener("change", btnOrientation);
-window.addEventListener("load", show);
+screen.orientation.addEventListener("change", () => {
+  show();
+  updateDetails(lockButton);
+});
+
+window.addEventListener("load", () => {
+  show();
+  updateDetails(document.getElementById("button"));
+});
