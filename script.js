@@ -125,7 +125,7 @@ function show() {
 
 screen.orientation.addEventListener("change", () => {
   show();
-  updateDetails(lockButton);
+  updateDetails(document.getElementById("button"));
 });
 
 window.addEventListener("load", () => {
